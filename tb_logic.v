@@ -2,14 +2,15 @@
 
 module tb_logic;
 
-reg clk_1s = 0, keydown_start = 0, keydown_num = 0, keydown_confirm = 0, keydown_clear = 0;
+reg clk = 0, tick = 0, keydown_start = 0, keydown_num = 0, keydown_confirm = 0, keydown_clear = 0;
 reg [3:0] num = 0;
 wire display;
 wire [4:0] input_val;
 wire [5:0] remaining;
 
 logic l (
-    .clk_1s(clk_1s),
+    .clk(clk),
+    .tick(tick),
     .keydown_start(keydown_start),
     .keydown_clear(keydown_clear),
     .keydown_confirm(keydown_confirm),
@@ -20,49 +21,52 @@ logic l (
     .remaining(remaining)
     );
 
-parameter half_clk_period = 100;
+initial begin
+    forever #10 clk = !clk;
+end
 
 initial begin
-    forever #half_clk_period clk_1s = !clk_1s;
+    forever #1000 tick = !tick;
 end
+
 
 initial begin
 
     // start
-    #10 keydown_start = 1;
-    #60 keydown_start = 0;
+    #1050 keydown_start = 1;
+    #600 keydown_start = 0;
 
     // input >20
-    #10 keydown_num = 1; num = 3;
-    #60 keydown_num = 0;
-    #10 keydown_num = 1; num = 6;
-    #60 keydown_num = 0;
+    #100 keydown_num = 1; num = 3;
+    #600 keydown_num = 0;
+    #100 keydown_num = 1; num = 6;
+    #600 keydown_num = 0;
 
     // clear
-    #10 keydown_clear = 1;
-    #60 keydown_clear = 0;
+    #100 keydown_clear = 1;
+    #600 keydown_clear = 0;
 
     // input 15
-    #10 keydown_num = 1; num = 1;
-    #60 keydown_num = 0;
-    #10 keydown_num = 1; num = 5;
-    #60 keydown_num = 0;
+    #100 keydown_num = 1; num = 1;
+    #600 keydown_num = 0;
+    #100 keydown_num = 1; num = 5;
+    #600 keydown_num = 0;
 
     // clear
-    #10 keydown_clear = 1;
-    #60 keydown_clear = 0;
+    #100 keydown_clear = 1;
+    #600 keydown_clear = 0;
 
     // input 3
-    #10 keydown_num = 1; num = 3;
-    #60 keydown_num = 0;
+    #100 keydown_num = 1; num = 3;
+    #600 keydown_num = 0;
 
     // confirm
-    #10 keydown_confirm = 1;
-    #60 keydown_confirm = 0;
+    #100 keydown_confirm = 1;
+    #600 keydown_confirm = 0;
 
     // restart
-    #3500 keydown_start = 1;
-    #60 keydown_start = 0;
+    #35000 keydown_start = 1;
+    #600 keydown_start = 0;
 
 end
 
