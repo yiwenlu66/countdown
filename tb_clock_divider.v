@@ -4,7 +4,7 @@ module tb_clock_divider;
 
 reg clk_in = 0;
 wire clk_out;
-reg [26:0] size = 2;
+reg [31:0] size = 2;
 
 clock_divider c (
     .clk_in(clk_in),

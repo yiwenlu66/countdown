@@ -1,10 +1,10 @@
 module clock_divider(
     input clk_in,
-    input [26:0] size,
+    input [31:0] size,
     output reg clk_out = 0
     );
 
-reg [26:0] counter = 0;
+reg [31:0] counter = 0;
 
 always @ (posedge clk_in) begin
     counter = counter + 1;
