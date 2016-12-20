@@ -2,7 +2,7 @@ module top(
     input clk,  // 100MHz
     input keypad_row_1, keypad_row_2, keypad_row_3, keypad_row_4,
     output keypad_col_1, keypad_col_2, keypad_col_3, keypad_col_4,
-    output display_a, display_b, display_c, display_d, display_e, display_f, display_g,
+    output display_a, display_b, display_c, display_d, display_e, display_f, display_g, display_dp,
     output display_an_0, display_an_1, display_an_2, display_an_3,
     output keydown_start, keydown_confirm, keydown_clear, keydown_num
     );
@@ -79,6 +79,7 @@ display disp (
     .digit_1(remaining_tens), .digit_0(remaining_units),
     .enable_3(enable_display), .enable_2(enable_display), .enable_1(enable_display), .enable_0(enable_display),
     .a(display_a), .b(display_b), .c(display_c), .d(display_d), .e(display_e), .f(display_f), .g(display_g),
+    .dp(display_dp),
     .an_0(display_an_0), .an_1(display_an_1), .an_2(display_an_2), .an_3(display_an_3)
     );
 

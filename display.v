@@ -5,7 +5,7 @@ module display(
     input [3:0] digit_1,
     input [3:0] digit_0,
     input enable_3, enable_2, enable_1, enable_0,
-    output a, b, c, d, e, f, g,
+    output a, b, c, d, e, f, g, dp,
     output an_3, an_2, an_1, an_0
     );
 
@@ -35,5 +35,7 @@ seven_seg seven_seg_decoder (
     .num(num_out),
     .a(a), .b(b), .c(c), .d(d), .e(e), .f(f), .g(g)
     );
+
+assign dp = 1;
 
 endmodule
