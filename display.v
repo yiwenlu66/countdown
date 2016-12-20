@@ -22,12 +22,16 @@ scan_display scan (
     .index(index)
     );
 
+wire [3:0] enable;
+assign enable = {enable_3, enable_2, enable_1, enable_0};
+
 two_four_decoder decoder (
     .in(index),
     .out_0(an_0), .out_1(an_1), .out_2(an_2), .out_3(an_3)
     );
 
 seven_seg seven_seg_decoder (
+    .enable(enable[index]),
     .num(num_out),
     .a(a), .b(b), .c(c), .d(d), .e(e), .f(f), .g(g)
     );
