@@ -3,11 +3,11 @@ module top(
     input keypad_row_1, keypad_row_2, keypad_row_3, keypad_row_4,
     output keypad_col_1, keypad_col_2, keypad_col_3, keypad_col_4,
     output display_a, display_b, display_c, display_d, display_e, display_f, display_g, display_dp,
-    output display_an_0, display_an_1, display_an_2, display_an_3,
-    output keydown_start, keydown_confirm, keydown_clear, keydown_num
+    output display_an_0, display_an_1, display_an_2, display_an_3
     );
 
 wire clk_display, clk_keypad, clk_logic, clk_tick;
+wire keydown_start, keydown_confirm, keydown_clear, keydown_num;
 wire [3:0] num;
 wire enable_display;
 wire [6:0] amount;
