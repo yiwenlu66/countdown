@@ -13,21 +13,12 @@ parameter INITIAL = 0, INPUT_0 = 1, INPUT_1 = 2, INPUT_2 = 3, COUNTDOWN = 4;
 reg [2:0] state = INITIAL;
 reg [3:0] inactive_time = 0;    // max: 10
 
-/*
- * Signals are assigned by key/tick block;
- * slots are assigned by clk block;
- * operations are done only when signal differs from slot.
- */
-reg signal_tick = 0, slot_tick = 0;
-reg signal_num = 0, slot_num = 0;
-reg signal_start = 0, slot_start = 0;
-reg signal_clear = 0, slot_clear = 0;
-reg signal_confirm = 0, slot_confirm = 0;
+reg tick_prev = 0;
+reg keydown_num_prev = 0, keydown_start_prev = 0, keydown_clear_prev = 0, keydown_confirm_prev = 0;
 
 always @ (posedge clk) begin
 
-    if (slot_tick != signal_tick) begin
-        slot_tick = signal_tick;
+    if (tick && !tick_prev) begin
         if (state == COUNTDOWN) begin
             remaining = remaining - 1;
             if (remaining == 0) begin
@@ -43,8 +34,7 @@ always @ (posedge clk) begin
         end
     end
 
-    if (slot_start != signal_start) begin
-        slot_start = signal_start; 
+    if (keydown_start && !keydown_start_prev) begin
         inactive_time = 0;
         if (state == INITIAL) begin
             state = INPUT_0;
@@ -54,8 +44,7 @@ always @ (posedge clk) begin
         end
     end
 
-    if (slot_clear != signal_clear) begin
-        slot_clear = signal_clear;
+    if (keydown_clear && !keydown_clear_prev) begin
         inactive_time = 0;
         if (state == INPUT_1 || state == INPUT_2) begin
             state = INPUT_0;
@@ -64,8 +53,7 @@ always @ (posedge clk) begin
         end
     end
 
-    if (slot_num != signal_num) begin
-        slot_num = signal_num; 
+    if (keydown_num && !keydown_num_prev) begin
         inactive_time = 0;
         if (state == INPUT_0) begin
             if (num != 0) begin
@@ -80,33 +68,18 @@ always @ (posedge clk) begin
         remaining = input_val << 1;
     end
 
-    if (slot_confirm != signal_confirm) begin
-        slot_confirm = signal_confirm;
+    if (keydown_confirm && !keydown_confirm_prev) begin
         inactive_time = 0;
         if (state == INPUT_1 || state == INPUT_2) state = COUNTDOWN;
     end
 
+    tick_prev = tick;
+    keydown_clear_prev = keydown_clear;
+    keydown_confirm_prev = keydown_confirm;
+    keydown_start_prev = keydown_start;
+    keydown_num_prev = keydown_num;
+
 end
 
-
-always @ (posedge keydown_start) begin
-    signal_start = !slot_start;
-end
-
-always @ (posedge keydown_confirm) begin
-    signal_confirm = !slot_confirm;
-end
-
-always @ (posedge keydown_clear) begin
-    signal_clear = !slot_clear;
-end
-
-always @ (posedge keydown_num) begin
-    signal_num = !slot_num;
-end
-
-always @ (posedge tick) begin
-    signal_tick = !slot_tick;
-end
 
 endmodule
