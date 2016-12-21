@@ -10,12 +10,8 @@ wire clk_display, clk_keypad, clk_logic, clk_tick;
 wire keydown_start, keydown_confirm, keydown_clear, keydown_num;
 wire [3:0] num;
 wire enable_display;
-wire [6:0] amount;
-wire [6:0] remaining;
-wire [3:0] amount_tens;
-wire [3:0] amount_units;
-wire [3:0] remaining_tens;
-wire [3:0] remaining_units;
+wire [6:0] amount, remaining;
+wire [3:0] amount_tens, amount_units, remaining_tens, remaining_units;
 
 clock_divider divider_display (
     .clk_in(clk),

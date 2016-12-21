@@ -1,9 +1,6 @@
 module display(
     input scan_clk,
-    input [3:0] digit_3,
-    input [3:0] digit_2,
-    input [3:0] digit_1,
-    input [3:0] digit_0,
+    input [3:0] digit_3, digit_2, digit_1, digit_0,
     input enable_3, enable_2, enable_1, enable_0,
     output a, b, c, d, e, f, g, dp,
     output an_3, an_2, an_1, an_0

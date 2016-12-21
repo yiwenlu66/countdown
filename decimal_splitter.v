@@ -4,8 +4,7 @@
 
 module decimal_splitter(
     input [6:0] dec,
-    output reg [3:0] tens,
-    output reg [3:0] units
+    output reg [3:0] tens, units
     );
 
 always @ * begin

@@ -3,8 +3,7 @@
 module tb_decimal_splitter;
 
 reg [6:0] dec;
-wire [3:0] tens;
-wire [3:0] units;
+wire [3:0] tens, units;
 
 decimal_splitter d (
     .dec(dec),

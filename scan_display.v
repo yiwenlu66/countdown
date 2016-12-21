@@ -5,10 +5,7 @@
 
 module scan_display(
     input scan_clk,          // recommended: ~250Hz
-    input [3:0] num_in_0,
-    input [3:0] num_in_1,
-    input [3:0] num_in_2,
-    input [3:0] num_in_3,
+    input [3:0] num_in_0, num_in_1, num_in_2, num_in_3,
     output reg [3:0] num_out,
     output reg [1:0] index = 0
     );
