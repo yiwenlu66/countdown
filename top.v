@@ -27,7 +27,7 @@ clock_divider divider_keypad (
 
 clock_divider divider_logic (
     .clk_in(clk),
-    .size(100),
+    .size(1000),
     .clk_out(clk_logic)
     );
 

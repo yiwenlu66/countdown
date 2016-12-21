@@ -7,13 +7,14 @@
  */
 
 module keypad_adapter(
+    input clk,
     input keydown,
     input [3:0] key_id,
     output reg keydown_start, keydown_confirm, keydown_clear, keydown_num,
     output reg [3:0] num
     );
 
-always @ * begin
+always @(posedge clk) begin
 
     case (key_id)
         0: num = 1;
@@ -29,10 +30,10 @@ always @ * begin
         default: num = 10;  // invalid
     endcase
 
-    keydown_start = (keydown && key_id == 13);
-    keydown_confirm = (keydown && key_id == 15);
-    keydown_clear = (keydown && key_id == 14);
-    keydown_num = (keydown && num != 10);
+    keydown_start <= (keydown && key_id == 13);
+    keydown_confirm <= (keydown && key_id == 15);
+    keydown_clear <= (keydown && key_id == 14);
+    keydown_num <= (keydown && num != 10);
     
 end
 

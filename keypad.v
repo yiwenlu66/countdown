@@ -17,6 +17,7 @@ keypad_driver drv (
     );
 
 keypad_adapter adapter (
+    .clk(clk),
     .keydown(keydown), .key_id(key_id),
     .keydown_start(keydown_start), .keydown_confirm(keydown_confirm),
     .keydown_clear(keydown_clear), .keydown_num(keydown_num),
