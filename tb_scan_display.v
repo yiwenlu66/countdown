@@ -6,7 +6,7 @@ reg scan_clk = 0;
 wire [3:0] num_out;
 wire [1:0] index;
 
-scan_display s (
+scan_display tb_scan_display__scan_display (
     .scan_clk(scan_clk),
     .num_in_0(4),
     .num_in_1(5),

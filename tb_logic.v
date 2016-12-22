@@ -8,7 +8,7 @@ wire display;
 wire [4:0] input_val;
 wire [5:0] remaining;
 
-logic l (
+logic tb_logic__logic (
     .clk(clk),
     .tick(tick),
     .keydown_start(keydown_start),

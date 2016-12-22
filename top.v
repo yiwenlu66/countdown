@@ -13,32 +13,32 @@ wire enable_display;
 wire [6:0] amount, remaining;
 wire [3:0] amount_tens, amount_units, remaining_tens, remaining_units;
 
-clock_divider divider_display (
+clock_divider top__clock_divider__display (
     .clk_in(clk),
     .size(400000),
     .clk_out(clk_display)
     );
 
-clock_divider divider_keypad (
+clock_divider top__clock_divider__keypad (
     .clk_in(clk),
     .size(100000),
     .clk_out(clk_keypad)
     );
 
-clock_divider divider_logic (
+clock_divider top__clock_divider__logic (
     .clk_in(clk),
     .size(1000),
     .clk_out(clk_logic)
     );
 
-clock_divider divider_tick (
+clock_divider top__clock_divider__tick (
     .clk_in(clk),
     .size(100000000),
     .clk_out(clk_tick)
     );
 
 
-keypad k (
+keypad top__keypad (
     .clk(clk_keypad),
     .row_1(keypad_row_1), .row_2(keypad_row_2), .row_3(keypad_row_3), .row_4(keypad_row_4),
     .col_1(keypad_col_1), .col_2(keypad_col_2), .col_3(keypad_col_3), .col_4(keypad_col_4),
@@ -47,7 +47,7 @@ keypad k (
     .num(num)
     );
 
-logic l (
+logic top__logic (
     .clk(clk_logic),
     .tick(clk_tick),
     .keydown_num(keydown_num), .keydown_start(keydown_start),
@@ -57,19 +57,19 @@ logic l (
     .input_val(amount), .remaining(remaining)
     );
 
-decimal_splitter splitter_amount (
+decimal_splitter top__decimal_splitter__amount (
     .dec(amount),
     .tens(amount_tens),
     .units(amount_units)
     );
 
-decimal_splitter splitter_remaining (
+decimal_splitter top__decimal_splitter__remaining (
     .dec(remaining),
     .tens(remaining_tens),
     .units(remaining_units)
     );
 
-display disp (
+display top__display (
     .scan_clk(clk_display),
     .digit_3(amount_tens), .digit_2(amount_units),
     .digit_1(remaining_tens), .digit_0(remaining_units),

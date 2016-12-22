@@ -9,7 +9,7 @@ module keypad_driver(
 reg [3:0] col = 0, row = 0;     // preserve enough bits for arithmetic operations
 reg [3:0] active_row, active_col;
 
-two_four_decoder decoder (
+two_four_decoder keypad_driver__two_four_decoder (
     .in(col),
     .out_0(col_1), .out_1(col_2), .out_2(col_3), .out_3(col_4)
     );

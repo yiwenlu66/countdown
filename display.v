@@ -9,7 +9,7 @@ module display(
 wire [3:0] num_out;
 wire [1:0] index;
 
-scan_display scan (
+scan_display display__scan_display (
     .scan_clk(scan_clk),
     .num_in_3(digit_3),
     .num_in_2(digit_2),
@@ -22,12 +22,12 @@ scan_display scan (
 wire [3:0] enable;
 assign enable = {enable_3, enable_2, enable_1, enable_0};
 
-two_four_decoder decoder (
+two_four_decoder display__two_four_decoder (
     .in(index),
     .out_0(an_0), .out_1(an_1), .out_2(an_2), .out_3(an_3)
     );
 
-seven_seg seven_seg_decoder (
+seven_seg display__seven_seg (
     .enable(enable[index]),
     .num(num_out),
     .a(a), .b(b), .c(c), .d(d), .e(e), .f(f), .g(g)

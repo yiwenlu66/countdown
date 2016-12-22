@@ -6,7 +6,7 @@ reg clk = 0;
 reg [3:0] d3, d2, d1, d0;
 reg e3, e2, e1, e0;
 
-display disp1 (
+display tb_display__display (
     .scan_clk(clk),
     .digit_3(d3), .digit_2(d2), .digit_1(d1), .digit_0(d0),
     .enable_3(e3), .enable_2(e2), .enable_1(e1), .enable_0(e0),

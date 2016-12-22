@@ -5,7 +5,7 @@ module tb_decimal_splitter;
 reg [6:0] dec;
 wire [3:0] tens, units;
 
-decimal_splitter d (
+decimal_splitter tb_decimal_splitter__decimal_splitter (
     .dec(dec),
     .tens(tens),
     .units(units)

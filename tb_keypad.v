@@ -14,7 +14,7 @@ wire col_0, col_1, col_2, col_3;
 wire keydown_start, keydown_confirm, keydown_clear, keydown_num;
 wire [3:0] num;
 
-keypad keypad1 (
+keypad tb_keypad__keypad (
     .clk(clk),
     .row_1(row_0), .row_2(row_1), .row_3(row_2), .row_4(row_3),
     .col_1(col_0), .col_2(col_1), .col_3(col_2), .col_4(col_3),
